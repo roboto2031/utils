@@ -1,0 +1,46 @@
+
+function main
+{
+	hello
+	download
+	uncompress
+	cleanup
+}
+
+function hello
+{
+	echo "Hello";
+}
+
+function download
+{
+	$web = New-Object System.Net.WebClient
+	$src = "http://download.sysinternals.com/files/SDelete.zip"
+	$dst = "c:\Users\$env:username\Downloads\SDelete.zip"
+	
+	$web.downloadfile($src, $dst)
+}
+
+function uncompress
+{
+	$shell = New-Object -com shell.application
+	$file ="c:\Users\$env:username\Downloads\SDelete.zip"
+	$zip = $shell.namespace($file)
+	
+	new-item -type directory -path c:\temp\0x0001
+	foreach($item in $zip.items())
+	{
+		$shell.namespace("c:\temp\0x0001").copyhere($item)
+	}
+}
+
+function cleanup
+{
+	$file = "c:\Users\$env:username\Downloads\SDelete.zip"
+	$dir = "c:\temp\0x0001"
+	
+	c:\temp\0x0001\sdelete.exe -p 7 -s -q $file
+	remove-item -recurse c:\temp\0x0001
+}
+
+main
