@@ -1,0 +1,21 @@
+--- openvas-omp.rb.orig	2015-07-28 23:01:26.675941501 -0700
++++ openvas-omp.rb	2015-07-28 23:03:48.193453494 -0700
+@@ -571,15 +571,10 @@
+         resp.elements.each('//get_reports_response/report') do |report|
+           td = Hash.new
+           td["id"] = report.attributes["id"]
+-	  puts td["id"]
+-          td["task"] = report.elements["report/task/name"].text
+-          puts td["task"]
+-          td["start_time"] = report.elements["report/scan_start"].text
+-          puts td["start_time"]
+-          td["stop_time"] = report.elements["report/scan_end"].text
+-          puts td["stop_time"]
++          td["task"] = report.elements["task/name"].to_s
++          td["start_time"] = report.elements["scan_start"].to_s
++          td["stop_time"] = report.elements["scan_end"].to_s
+           list.push td	
+-          puts list
+         end
+         @reports = list
+         return list
