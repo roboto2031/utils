@@ -11,8 +11,9 @@ API_KEY="";
 def usage():
 	print("\n============================================================================================")
 	print("Usage:")
-	print("shodan_webquery.py -q {search query} -f {output file} -p {page #|all} ")
+	print("shodan_webquery.py -k {API key} -q {search query} -f {output file} -p {page #|all} ")
 	print("-------------")
+	print("-k | --key <API KEY>		        ### Shodan API key")
 	print("-q | --query <query>                    ### Shodan Search query")
 	print("-f | --file <file>                      ### file for CSV output")
 	print("-p | --page <page>		        ### result page, (default)first page, or all pages") 
@@ -55,7 +56,7 @@ def main(argv):
 		sys.exit(2);
 
 	try:
-		opts, args = getopt.getopt(argv, 'hq:f:p:', ["query=", "file=", "page="]);
+		opts, args = getopt.getopt(argv, 'hk:q:f:p:', ["key=", "query=", "file=", "page="]);
 	except getopt.GetoptError as err:
 		print(err);
 		usage();
@@ -65,6 +66,8 @@ def main(argv):
 		if opt == '-h':
 			usage();
 			sys.exit();
+		elif opt in ('-k', "--key"):
+			API_KEY = arg;
 		elif opt in ('-q', "--query"):
 			query = arg;
 		elif opt in ('-f', "--file"):
