@@ -3,7 +3,16 @@
 #usage message
 function usage
 {
-	echo "usage message";
+	echo "|==============================================================================|";
+	echo "| [port_scan.sh -t <target IP> -f <start port> -l <stop port> -p <tcp|udp> -h] |";
+	echo "|------------------------------------------------------------------------------|";
+	echo "| -h                          #### help/usage message, this thing.         ####|";
+	echo "| -t <target IP>	      #### The IP of the target to be scanned.     ####|";
+	echo "| -f <start port>             #### The first port in the port range.       ####|";
+	echo "| -l <stop port>              #### The last port in the port range.        ####|";
+	echo "| -p <tcp|udp>                #### The protocol to be used, TCP or UDP.    ####|";
+	echo "|==============================================================================|";
+	exit;
 }
 
 #ping
