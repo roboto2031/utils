@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 #usage message
 function usage
@@ -12,7 +12,6 @@ function usage
 	echo "| -l <stop port>              #### The last port in the port range.        ####|";
 	echo "| -p <tcp|udp>                #### The protocol to be used, TCP or UDP.    ####|";
 	echo "|==============================================================================|";
-	exit;
 }
 
 #ping
@@ -58,6 +57,7 @@ while getopts  "ht:f:l:p:" opt; do
 	case $opt in
 		h)	# usage message
 			usage;
+			exit;
 			;;
 		t)	# target
 			host=$OPTARG;
