@@ -59,9 +59,10 @@ def convert(in_file, out_file):
 				for table in script.findall('table'):
 					Banner2=Banner2+"; "+str(table.attrib.get('key'));
 					for elem in table.findall('elem'):
-						Banner2=Banner2+"; "+str(elem.attrib.get('key'))+": "+elem.text; 
+						Banner2=Banner2+"; "+str(elem.attrib.get('key'))+": "+str(elem.text); 
 				for elem in script.findall('elem'):
-					Banner2=Banner2+"; "+str(elem.attrib.get('key'))+": "+elem.text;
+				        Banner2=Banner2+"; "+str(elem.attrib.get('key'))+": "+str(elem.text);
+
 				# CSV for hostscript results
 				CSV=IP+"`"+MAC+"`"+Host+"`"+OS+"`"+""+"`"+""+"`"+""+"`"+Banner2;
 				fileout.write(CSV.replace('\n', '').replace('\r', ' ')+"\n");		
