@@ -7,7 +7,7 @@ from threading import *
 
 maxConnections = 5;
 connection_lock = BoundSemaphore(value=maxConnections);
-Stop = false;
+Stop = False;
 Fails = 0;
 
 def connect(user, host, keyfile, release):
